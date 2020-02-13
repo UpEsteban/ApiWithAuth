@@ -24,7 +24,7 @@ namespace IdentityServer
                     // secret for authentication
                     ClientSecrets =
                     {
-                        new Secret("123465")
+                        new Secret("123465".Sha256())
                     },
 
                     // scopes that client has access to

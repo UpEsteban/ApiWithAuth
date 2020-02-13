@@ -29,6 +29,18 @@ namespace PoocCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            #region Authentication
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "http://localhost:5000";
+                options.RequireHttpsMetadata = false;
+
+                options.Audience = "api1";
+            });
+            #endregion
+
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new ApplicationMappingProfile());
@@ -69,6 +81,7 @@ namespace PoocCore
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
