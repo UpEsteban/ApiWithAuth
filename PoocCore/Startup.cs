@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using PoocCore.Domain;
 using PoocCore.Domain.Repositories;
 using PoocCore.Domain.Services;
@@ -13,6 +14,7 @@ using PoocCore.Infrastucture.MongoDb;
 using PoocCore.Infrastucture.Repositories;
 using PoocCore.Infrastucture.Sql;
 using PoocCore.Infrastucture.Sql.Repositories;
+using System.IdentityModel.Tokens.Jwt;
 using static PoocCore.Infrastucture.MongoDb.BookContext;
 
 namespace PoocCore
@@ -35,9 +37,8 @@ namespace PoocCore
             .AddJwtBearer("Bearer", options =>
             {
                 options.Authority = "http://localhost:5000";
-                options.RequireHttpsMetadata = false;
-
                 options.Audience = "api1";
+                options.RequireHttpsMetadata = false;
             });
             #endregion
 

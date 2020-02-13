@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace PoocCore.Controllers
 {
     [Route("identity")]
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class IdentityController : ControllerBase
     {
         public IActionResult Get()
